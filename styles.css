@@ -1,0 +1,41 @@
+body {
+  background: #fafafa;
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.v-card {
+  transition: box-shadow 0.2s;
+}
+
+.v-card:hover {
+  box-shadow: 0 6px 18px rgba(60,60,60,0.15);
+}
+
+.v-card-title, .v-list-item-title {
+  font-weight: 500;
+  color: #1565c0;
+}
+
+.v-btn {
+  font-weight: bold;
+}
+
+.v-img {
+  height: 75%;
+  width: 75%;
+}
+
+@media (max-width: 600px) {
+  #app {
+    padding: 0.5rem;
+  }
+}
+
+
+

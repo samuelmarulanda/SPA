@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prueba</title>
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <v-text-field v-model="searchTerm" label="Buscar por nombre" outlined dense clearable class="mb-4"></v-text-field>
+          <v-row>
+            <v-col v-for="user in filteredUsers" :key="user.id" cols="12" sm="6" md="4">
+              <v-card class="ma-3" outlined>
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <v-img :src="'https://i.pravatar.cc/150?u=' + user.email" />
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title>{{ user.name }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-card-actions>
+                  <v-btn @click="openModal(user)" text color="primary">Ver más</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-dialog v-model="modalVisible" max-width="500">
+            <v-card v-if="selectedUser">
+              <v-card-title>
+                {{ selectedUser.name }}
+                <v-spacer></v-spacer>
+                <v-btn icon @click="closeModal">
+                <v-icon>mdi-close</v-icon></v-btn>
+              </v-card-title>
+              <v-card-text>
+                <p><strong>Dirección:</strong> {{ selectedUser.address.street }}, {{ selectedUser.address.city }}</p>
+                <p><strong>Teléfono:</strong> {{ selectedUser.phone }}</p>
+                <p><strong>Compañía:</strong> {{ selectedUser.company.name }}</p>
+                <p><strong>Sitio web:</strong> <a :href="'http://' + selectedUser.website" target="_blank">{{ selectedUser.website }}</a></p>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn color="primary" @click="closeModal">Cerrar</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
